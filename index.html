@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Naga Sai Anurag | Full Stack Software Engineer</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --bg: #050505;
+      --bg-light: #0f0f0f;
+      --card: rgba(255, 255, 255, 0.04);
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #ffffff;
+      --muted: #a1a1aa;
+      --primary: #8b5cf6;
+      --secondary: #06b6d4;
+      --gradient: linear-gradient(135deg, #8b5cf6, #06b6d4);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at top left, rgba(139, 92, 246, 0.18), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(6, 182, 212, 0.18), transparent 30%);
+      z-index: -2;
+    }
+
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      z-index: -1;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1280px;
+      margin: auto;
+    }
+
+    section {
+      padding: 110px 0;
+    }
+
+    .section-title {
+      font-size: 46px;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 20px;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--muted);
+      max-width: 760px;
+      margin: auto auto 70px;
+      line-height: 1.8;
+    }
+
+    /* NAVBAR */
+
+    nav {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 999;
+      backdrop-filter: blur(14px);
+      background: rgba(0, 0, 0, 0.55);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-wrapper {
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 800;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: white;
+      font-size: 15px;
+      transition: 0.3s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 0%;
+      height: 2px;
+      background: var(--gradient);
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .menu-btn {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .hero-wrapper {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-text h3 {
+      color: var(--secondary);
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
+    .hero-text h1 {
+      font-size: 78px;
+      line-height: 1.05;
+      margin-bottom: 25px;
+      font-weight: 900;
+    }
+
+    .hero-text p {
+      color: var(--muted);
+      line-height: 1.9;
+      margin-bottom: 35px;
+      font-size: 17px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 15px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.35s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-primary {
+      background: var(--gradient);
+      color: white;
+      box-shadow: 0 10px 30px rgba(139, 92, 246, 0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-4px);
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: white;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .btn-outline i {
+      font-size: 14px !important;
+    }
+
+    .hero-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 40px;
+      backdrop-filter: blur(12px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      background: rgba(139, 92, 246, 0.2);
+      border-radius: 50%;
+      top: -100px;
+      right: -100px;
+      filter: blur(60px);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .stat {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 20px;
+      padding: 25px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .stat h2 {
+      font-size: 42px;
+      margin-bottom: 10px;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .stat p {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* CARDS */
+
+    .glass-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 35px;
+      backdrop-filter: blur(12px);
+      transition: 0.4s ease;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(139, 92, 246, 0.4);
+    }
+
+    .glass-card h3 {
+      font-size: 28px;
+      margin-bottom: 18px;
+    }
+
+    .glass-card p {
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .about-grid,
+    .education-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 35px;
+    }
+
+    /* SKILLS */
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 25px;
+    }
+
+    .skill {
+      padding: 12px 18px;
+      border-radius: 50px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      transition: 0.3s;
+    }
+
+    .skill:hover {
+      background: var(--gradient);
+      transform: scale(1.05);
+    }
+
+    /* TIMELINE */
+
+    .timeline {
+      position: relative;
+      margin-top: 60px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .timeline-item {
+      width: 50%;
+      padding: 20px 30px;
+      position: relative;
+    }
+
+    .timeline-item:nth-child(odd) {
+      left: 0;
+    }
+
+    .timeline-item:nth-child(even) {
+      left: 50%;
+    }
+
+    .timeline-content {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 30px;
+      transition: 0.4s;
+    }
+
+    .timeline-content:hover {
+      transform: translateY(-6px);
+      border-color: rgba(6, 182, 212, 0.4);
+    }
+
+    .timeline-content h3 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .timeline-content h4 {
+      color: var(--secondary);
+      margin-bottom: 15px;
+    }
+
+    .timeline-content ul {
+      padding-left: 18px;
+    }
+
+    .timeline-content li {
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 8px;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--primary);
+      top: 40px;
+      right: -9px;
+      box-shadow: 0 0 20px rgba(139, 92, 246, 0.8);
+    }
+
+    .timeline-item:nth-child(even) .timeline-dot {
+      left: -9px;
+    }
+
+    /* PROJECTS */
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(550px, 1fr));
+      gap: 30px;
+    }
+
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 30px;
+      position: relative;
+      overflow: hidden;
+      transition: 0.4s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      border-color: rgba(139, 92, 246, 0.5);
+    }
+
+    .project-card::before {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: rgba(6, 182, 212, 0.15);
+      top: -70px;
+      right: -70px;
+      filter: blur(40px);
+    }
+
+    .project-icon {
+      font-size: 42px;
+      margin-bottom: 20px;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+
+    .project-card h3 {
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+
+    .project-card p {
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 25px;
+    }
+
+    /* CONTACT */
+
+    .contact-box {
+      max-width: 760px;
+      margin: auto;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 30px;
+    }
+
+    .contact-item i {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--secondary);
+      font-size: 22px;
+    }
+
+    .contact-item h4 {
+      margin-bottom: 5px;
+    }
+
+    .contact-item a,
+    .contact-item p {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 35px 0;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      color: var(--muted);
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width: 992px) {
+
+      .hero-wrapper,
+      .about-grid,
+      .education-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-text h1 {
+        font-size: 58px;
+      }
+
+      .timeline::before {
+        left: 20px;
+      }
+
+      .timeline-item {
+        width: 100%;
+        padding-left: 60px;
+      }
+
+      .timeline-item:nth-child(even) {
+        left: 0;
+      }
+
+      .timeline-dot,
+      .timeline-item:nth-child(even) .timeline-dot {
+        left: 10px;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media(max-width: 768px) {
+
+      .nav-links {
+        position: absolute;
+        top: 80px;
+        left: -100%;
+        flex-direction: column;
+        width: 100%;
+        background: #0d0d0d;
+        padding: 30px;
+        transition: 0.4s;
+      }
+
+      .nav-links.active {
+        left: 0;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .hero-text h1 {
+        font-size: 42px;
+      }
+
+      .section-title {
+        font-size: 36px;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .btn {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="grid-bg"></div>
+
+  <!-- NAVBAR -->
+
+  <nav>
+    <div class="container nav-wrapper">
+
+      <div class="logo">Naga Sai Anurag</div>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+
+        <li>
+          <a href="resume.pdf" download>
+            Download Resume
+          </a>
+        </li>
+
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <div class="menu-btn" id="menuBtn">
+        <i class="fas fa-bars"></i>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- HERO -->
+
+  <section class="hero" id="home">
+
+    <div class="container hero-wrapper">
+
+      <div class="hero-text" data-aos="fade-right">
+
+        <h3 id="hero-role"></h3>
+
+        <h1 id="hero-title"></h1>
+
+        <p id="hero-description"></p>
+
+        <div class="hero-buttons">
+
+          <a href="#contact" class="btn btn-primary">
+            <i class="fa-solid fa-paper-plane"></i>
+            Contact Me
+          </a>
+
+          <a href="#projects" class="btn btn-outline">
+            <i class="fa-solid fa-code"></i>
+            View Projects
+          </a>
+
+        </div>
+
+      </div>
+
+      <div class="hero-card" data-aos="fade-left">
+
+        <div class="stats-grid" id="statsContainer"></div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ABOUT -->
+
+  <section id="about">
+
+    <div class="container">
+
+      <h2 class="section-title" data-aos="fade-up">
+        About Me
+      </h2>
+
+      <p class="section-subtitle" data-aos="fade-up">
+        I combine strong foundations in software engineering,
+        cloud technologies, frontend architecture,
+        backend integrations, and data systems
+        to build scalable, high-performance,
+        and production-grade digital products.
+      </p>
+
+      <div class="about-grid">
+
+        <div class="glass-card" data-aos="fade-up">
+
+          <h3>Professional Summary</h3>
+
+          <p id="professionalSummary"></p>
+
+        </div>
+
+        <div class="glass-card" data-aos="fade-up" data-aos-delay="150">
+
+          <h3>Core Expertise</h3>
+
+          <div class="skills" id="skillsContainer"></div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- EXPERIENCE -->
+
+  <section id="experience">
+
+    <div class="container">
+
+      <h2 class="section-title" data-aos="fade-up">
+        Experience
+      </h2>
+
+      <p class="section-subtitle" data-aos="fade-up">
+        Experience across frontend engineering,
+        backend integrations, cloud-native systems,
+        scalable SaaS applications,
+        and enterprise software development.
+      </p>
+
+      <div class="timeline" id="experienceContainer"></div>
+
+    </div>
+
+  </section>
+
+  <!-- PROJECTS -->
+
+  <section id="projects">
+
+    <div class="container">
+
+      <h2 class="section-title" data-aos="fade-up">
+        Featured Projects
+      </h2>
+
+      <p class="section-subtitle" data-aos="fade-up">
+        Enterprise SaaS platforms, scalable production systems,
+        cloud-native applications, and academic engineering projects.
+      </p>
+
+      <div class="projects-grid" id="projectsContainer"></div>
+
+    </div>
+
+  </section>
+
+  <!-- EDUCATION -->
+
+  <section id="education">
+
+    <div class="container">
+
+      <h2 class="section-title" data-aos="fade-up">
+        Education
+      </h2>
+
+      <div class="education-grid" id="educationContainer"></div>
+
+    </div>
+
+  </section>
+
+  <!-- CONTACT -->
+
+  <section id="contact">
+
+    <div class="container">
+
+      <h2 class="section-title" data-aos="fade-up">
+        Contact Me
+      </h2>
+
+      <p class="section-subtitle" data-aos="fade-up">
+        Open to Full Stack Engineering opportunities,
+        enterprise SaaS product development,
+        cloud-native platforms,
+        and scalable software collaborations.
+      </p>
+
+      <div class="glass-card contact-box" data-aos="zoom-in" id="contactContainer"></div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="container">
+      © 2026 Naga Sai Anurag • Full Stack Software Engineer
+    </div>
+
+  </footer>
+
+  <!-- AOS -->
+
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+  <!-- DATA -->
+
+  <script>
+
+    const portfolioData = {
+
+      hero: {
+        role: "FULL STACK SOFTWARE ENGINEER",
+
+        title: `
+          Building
+          Scalable &
+          Intelligent
+          Digital Platforms
+        `,
+
+        description: `
+          Full Stack Software Engineer with expertise in frontend engineering,
+          scalable SaaS applications, cloud-native systems,
+          backend integrations, data engineering,
+          and modern web architectures.
+          Experienced in building production-grade applications using
+          Vue.js, JavaScript, Python, Java, REST APIs,
+          Linux, Kafka, Spark, Azure, and Webflow CMS.
+        `
+      },
+
+      stats: [
+        {
+          number: "3+",
+          text: "Years of Industry Experience"
+        },
+        {
+          number: "50+",
+          text: "Enterprise Components Refactored"
+        },
+        {
+          number: "2",
+          text: "Enterprise Websites Launched"
+        },
+        {
+          number: "100%",
+          text: "Responsive & Production Ready Systems"
+        }
+      ],
+
+      about: {
+        summary: `
+          Currently working as a Software Development Engineer II
+          at Modak, building scalable enterprise applications,
+          cloud-native platforms, responsive web systems,
+          and modern SaaS solutions.
+
+          Experienced across frontend engineering,
+          backend integrations, REST APIs,
+          cloud workflows, Linux systems,
+          and data-driven platforms using
+          Vue.js, JavaScript, Python,
+          MySQL, Kafka, Spark, Webflow CMS,
+          Docker, and Azure technologies.
+        `,
+
+        skills: [
+          "Vue.js",
+          "JavaScript",
+          "Python",
+          "Java",
+          "MySQL",
+          "Kafka",
+          "Spark",
+          "Linux",
+          "Azure",
+          "REST APIs",
+          "Tailwind CSS",
+          "Docker",
+          "Pinia",
+          "Webflow CMS"
+        ]
+      },
+
+      experience: [
+        {
+          role: "Software Development Engineer II",
+          company: "Modak • Aug 2024 – Present",
+          animation: "fade-right",
+          points: [
+            "Led frontend development and website launches for Modak and Yeedu corporate platforms.",
+            "Built scalable and responsive UI systems for enterprise products.",
+            "Managed production deployment lifecycle and performance optimization.",
+            "Integrated Webflow CMS for dynamic content publishing workflows.",
+            "Improved accessibility, responsiveness, and user engagement metrics."
+          ]
+        },
+
+        {
+          role: "Software Development Engineer",
+          company: "Modak • Mar 2023 – Jul 2024",
+          animation: "fade-left",
+          points: [
+            "Migrated 50+ enterprise components from iView to PrimeVue.",
+            "Built SaaS modules for credentials, secrets, networks, and clusters management.",
+            "Designed scalable state management using Pinia.",
+            "Integrated REST APIs with optimized frontend performance.",
+            "Developed reusable Vue.js component-driven architectures."
+          ]
+        },
+
+        {
+          role: "Software Intern",
+          company: "Modak • Oct 2022 – Feb 2023",
+          animation: "fade-right",
+          points: [
+            "Worked with Linux, Java, MySQL, Kafka, Spark, and Scala.",
+            "Built understanding of ETL workflows and Azure Data Factory.",
+            "Contributed to data engineering and cloud integration projects."
+          ]
+        },
+
+        {
+          role: "Software Developer Intern",
+          company: "Metapointer • Jul 2022 – Sep 2022",
+          animation: "fade-left",
+          points: [
+            "Worked on doctor-patient platform features and blog systems.",
+            "Created Docker-based automated installation workflows.",
+            "Contributed to AngularJS and Linux-based development tasks."
+          ]
+        }
+      ],
+
+      projects: [
+
+        {
+          icon: "fa-solid fa-globe",
+          title: "Modak Corporate Website",
+
+          description: `
+            Led the design and development of a scalable enterprise website from scratch with a fully responsive UI
+            architecture. Improved website performance, integrated WordPress for dynamic content management, managed
+            deployment workflows, and led a team of 3 developers to deliver a high-performance digital experience.
+          `,
+
+          link: "https://modak.com/"
+        },
+
+        {
+          icon: "fa-solid fa-globe",
+          title: "Yeedu Corporate Website",
+
+          description: `
+            Designed and developed a modern responsive website in Webflow with a strong focus on UI/UX and performance
+            optimization. Implemented CMS-driven blog management, improved overall website speed and responsiveness, and
+            built a scalable user experience optimized across all devices.
+          `,
+
+          link: "https://yeedu.com/"
+        },
+
+        {
+          icon: "fa-solid fa-cloud",
+          title: "Yeedu Cloud Platform",
+
+          description: `
+            Built enterprise-grade cloud infrastructure interfaces for credentials, secrets, clusters, and scalable SaaS
+            management workflows. Developed responsive and high-performance UI components using Vue.js and JavaScript,
+            integrated APIs for seamless platform operations, enhanced overall user experience, and played a key role in
+            a collaborative team of 5 developers delivering scalable SaaS solutions.
+          `
+        },
+
+        {
+          icon: "fa-solid fa-graduation-cap",
+          title: "I-LMS",
+
+          description: `
+            Built mentor and student dashboards using React.js with interactive cards, timelines, sprint planning
+            workflows, and Git-based collaboration.
+          `,
+          link: "https://github.com/nagasaianurag/I-LMS"
+        },
+
+        {
+          icon: "fa-solid fa-image",
+          title: "Seam Carving",
+
+          description: `
+            Developed an intelligent image resizing algorithm in Java for dynamic seam detection and content-aware image
+            optimization.
+          `
+        }
+      ],
+
+      education: [
+
+        {
+          title: "IIIT Hyderabad",
+
+          description: `
+            Master of Science in Information Technology
+            <br><br>
+
+            Specialized in software engineering,
+            cloud technologies,
+            scalable systems,
+            React.js,
+            Python,
+            and modern application development.
+          `
+        },
+
+        {
+          title: "Amrita Vishwa Vidyapeetham",
+
+          description: `
+            Bachelor of Technology in Electronics &
+            Communication Engineering
+            <br><br>
+
+            Worked on technical initiatives,
+            social responsibility projects,
+            VLSI systems,
+            and signal processing concepts.
+          `
+        }
+      ],
+
+      contact: [
+
+        {
+          icon: "fa-solid fa-envelope",
+          title: "Email",
+          value: "chirumamilla.anurag@gmail.com",
+          href: "mailto:chirumamilla.anurag@gmail.com"
+        },
+
+        {
+          icon: "fa-brands fa-linkedin",
+          title: "LinkedIn",
+          value: "linkedin.com/in/naga-sai-anurag",
+          href: "https://www.linkedin.com/in/naga-sai-anurag/"
+        },
+
+        {
+          icon: "fa-solid fa-phone",
+          title: "Phone",
+          value: "+91 8331899966",
+          href: "tel:+918331899966"
+        }
+      ]
+    };
+
+  </script>
+
+  <!-- RENDER SCRIPT -->
+
+  <script>
+
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+
+    // MOBILE MENU
+
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    menuBtn.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+
+    // HERO
+
+    document.getElementById("hero-role").innerHTML = portfolioData.hero.role;
+    document.getElementById("hero-title").innerHTML = portfolioData.hero.title;
+    document.getElementById("hero-description").innerHTML = portfolioData.hero.description;
+
+    // STATS
+
+    document.getElementById("statsContainer").innerHTML =
+      portfolioData.stats.map(stat => `
+        <div class="stat">
+          <h2>${stat.number}</h2>
+          <p>${stat.text}</p>
+        </div>
+      `).join("");
+
+    // ABOUT
+
+    document.getElementById("professionalSummary").innerHTML =
+      portfolioData.about.summary;
+
+    document.getElementById("skillsContainer").innerHTML =
+      portfolioData.about.skills.map(skill => `
+        <div class="skill">${skill}</div>
+      `).join("");
+
+    // EXPERIENCE
+
+    document.getElementById("experienceContainer").innerHTML =
+      portfolioData.experience.map((item) => `
+        <div class="timeline-item" data-aos="${item.animation}">
+
+          <div class="timeline-dot"></div>
+
+          <div class="timeline-content">
+
+            <h3>${item.role}</h3>
+
+            <h4>${item.company}</h4>
+
+            <ul>
+              ${item.points.map(point => `<li>${point}</li>`).join("")}
+            </ul>
+
+          </div>
+
+        </div>
+      `).join("");
+
+    // PROJECTS
+
+    document.getElementById("projectsContainer").innerHTML =
+      portfolioData.projects.map((project, index) => `
+        <div class="project-card"
+          data-aos="zoom-in"
+          data-aos-delay="${index * 100}">
+
+          <i class="${project.icon} project-icon"></i>
+
+          <h3>${project.title}</h3>
+
+          <p>${project.description}</p>
+
+          ${project.link
+          ? `
+            <a href="${project.link}" target="_blank" class="btn btn-outline">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              View Demo
+            </a>
+          `
+          : ""
+        }
+
+        </div>
+      `).join("");
+
+    // EDUCATION
+
+    document.getElementById("educationContainer").innerHTML =
+      portfolioData.education.map((item, index) => `
+        <div class="glass-card"
+          data-aos="fade-up"
+          data-aos-delay="${index * 150}">
+
+          <h3>${item.title}</h3>
+
+          <p>${item.description}</p>
+
+        </div>
+      `).join("");
+
+    // CONTACT
+
+    document.getElementById("contactContainer").innerHTML =
+      portfolioData.contact.map(item => `
+        <div class="contact-item">
+
+          <i class="${item.icon}"></i>
+
+          <div>
+
+            <h4>${item.title}</h4>
+
+            <a href="${item.href}" target="_blank">
+              ${item.value}
+            </a>
+
+          </div>
+
+        </div>
+      `).join("");
+
+  </script>
+
+</body>
+
+</html>
