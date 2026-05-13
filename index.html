@@ -525,7 +525,6 @@
       filter: blur(40px);
     }
 
-    /* UPDATED: Smaller radius for the glow (350px) */
     .project-card::after {
       content: "";
       position: absolute;
@@ -593,12 +592,11 @@
       color: var(--secondary);
       font-size: 22px;
       transition: all 0.3s ease;
-      flex-shrink: 0; /* Prevents icon from shrinking on mobile */
+      flex-shrink: 0;
     }
 
-    /* UPDATED: Container width constraint to prevent pushing text out */
     .contact-item div {
-      width: calc(100% - 76px); /* 58px icon + 18px gap */
+      width: calc(100% - 76px);
     }
 
     .contact-item h4 {
@@ -610,7 +608,6 @@
       text-decoration: none;
     }
     
-    /* UPDATED: Responsive word-break to handle long emails */
     .contact-item a {
       color: var(--muted);
       text-decoration: none;
@@ -619,7 +616,7 @@
       position: relative;
       max-width: 100%;
       word-wrap: break-word; 
-      overflow-wrap: break-word; /* Makes long emails drop to the next line safely */
+      overflow-wrap: break-word;
       word-break: break-all;
     }
 
@@ -1092,19 +1089,52 @@
     `).join("");
 
     // EXPERIENCE RENDER & INTERACTION
+    function getDuration(dateString) {
+      if (!dateString) return '';
+      
+      const parts = dateString.split(/[-–]/).map(s => s.trim());
+      if (parts.length !== 2) return '';
+
+      const startDate = new Date(parts[0]);
+      const endDate = parts[1].toLowerCase() === 'present' ? new Date() : new Date(parts[1]);
+
+      let months = (endDate.getFullYear() - startDate.getFullYear()) * 12;
+      months -= startDate.getMonth();
+      months += endDate.getMonth();
+      months += 1; 
+
+      if (isNaN(months) || months < 0) return '';
+
+      const years = Math.floor(months / 12);
+      const remainingMonths = months % 12;
+
+      let duration = [];
+      if (years > 0) duration.push(`${years} yr${years > 1 ? 's' : ''}`);
+      if (remainingMonths > 0) duration.push(`${remainingMonths} mo${remainingMonths > 1 ? 's' : ''}`);
+      
+      return duration.length > 0 ? duration.join(' ') : '';
+    }
+
     document.getElementById("experienceContainer").innerHTML = `
       <div class="timeline-progress" id="timelineProgress"></div>
       ${portfolioData.experience.map((item) => {
         const companyParts = item.company.split(' • ');
         const companyName = companyParts[0];
-        const dateString = companyParts[1] ? `<span class="date-badge"><i class="fa-regular fa-calendar" style="margin-right: 5px;"></i>${companyParts[1]}</span>` : '';
+        const dateStringRaw = companyParts[1];
+        
+        let dateStringFormatted = '';
+        if (dateStringRaw) {
+          const duration = getDuration(dateStringRaw);
+          const displayText = duration ? `${dateStringRaw} • ${duration}` : dateStringRaw;
+          dateStringFormatted = `<span class="date-badge"><i class="fa-regular fa-calendar" style="margin-right: 5px;"></i>${displayText}</span>`;
+        }
 
         return `
           <div class="timeline-item" data-aos="${item.animation}">
             <div class="timeline-dot"></div>
             <div class="timeline-content">
               <h3>${item.role}</h3>
-              <h4>${companyName} ${dateString}</h4>
+              <h4>${companyName} ${dateStringFormatted}</h4>
               <ul>
                 ${item.points.map(point => `<li>${point}</li>`).join("")}
               </ul>
